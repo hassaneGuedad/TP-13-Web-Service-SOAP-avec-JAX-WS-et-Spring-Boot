@@ -816,21 +816,9 @@ Date : Novembre 2025
 
 ## Captures d'écran - Résumé
 
-### Zones importantes à capturer dans SoapUI :
+<img width="950" height="505" alt="caap1_off" src="https://github.com/user-attachments/assets/40837aee-856d-4738-ada3-91a657038609" />
 
-**Pour chaque test :**
-1. ✅ Onglet **Request** : montrer la requête SOAP avec les paramètres
-2. ✅ Onglet **Response** : montrer la réponse réussie (HTTP 200)
-3. ✅ Barre de status : vérifier le badge vert (Success)
-4. ✅ Endpoint configuré : montrer `http://localhost:8080/services/ws`
+<img width="950" height="505" alt="caap2" src="https://github.com/user-attachments/assets/649c4870-64d7-43cc-9b34-67424e2d5c59" />
 
-**Arborescence du projet :** 
-- Montrer le dossier avec BanqueWS → BanqueWSSoapBinding → CompteSoapServicePort → les 4 opérations
-
-**Console H2 (optionnel) :**
-- Montrer la requête `SELECT * FROM COMPTE;` et les résultats
-
----
-
-**Fin du README** ✅
+<img width="950" height="505" alt="caaap3" src="https://github.com/user-attachments/assets/449d60b3-66d6-444f-ae9a-e8420c106456" />
 
