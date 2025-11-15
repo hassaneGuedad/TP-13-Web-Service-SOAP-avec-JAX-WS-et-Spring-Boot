@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:tns="http://ws.demo.example.com/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        name="BanqueWS"
+        targetNamespace="http://ws.demo.example.com/">
+
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               targetNamespace="http://ws.demo.example.com/"
+               elementFormDefault="unqualified">
+
+      <!-- Définition des types -->
+      <xs:complexType name="compte">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="solde" type="xs:double"/>
+          <xs:element minOccurs="0" name="dateCreation" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="type" type="tns:typeCompte"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getCompteById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getCompteByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="deleteCompte">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="deleteCompteResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="createCompte">
+        <xs:sequence>
+          <xs:element name="solde" type="xs:double"/>
+          <xs:element minOccurs="0" name="type" type="tns:typeCompte"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="createCompteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getComptes">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="getComptesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:compte"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:simpleType name="typeCompte">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="COURANT"/>
+          <xs:enumeration value="EPARGNE"/>
+          <xs:enumeration value="LIVRET"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+    </xs:schema>
+  </wsdl:types>
+
+  <!-- Messages -->
+  <wsdl:message name="getComptes">
+    <wsdl:part name="parameters" element="tns:getComptes"/>
+  </wsdl:message>
+
+  <wsdl:message name="getComptesResponse">
+    <wsdl:part name="parameters" element="tns:getComptesResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getCompteById">
+    <wsdl:part name="parameters" element="tns:getCompteById"/>
+  </wsdl:message>
+
+  <wsdl:message name="getCompteByIdResponse">
+    <wsdl:part name="parameters" element="tns:getCompteByIdResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="createCompte">
+    <wsdl:part name="parameters" element="tns:createCompte"/>
+  </wsdl:message>
+
+  <wsdl:message name="createCompteResponse">
+    <wsdl:part name="parameters" element="tns:createCompteResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="deleteCompte">
+    <wsdl:part name="parameters" element="tns:deleteCompte"/>
+  </wsdl:message>
+
+  <wsdl:message name="deleteCompteResponse">
+    <wsdl:part name="parameters" element="tns:deleteCompteResponse"/>
+  </wsdl:message>
+
+  <!-- PortType -->
+  <wsdl:portType name="CompteSoapService">
+    <wsdl:operation name="getComptes">
+      <wsdl:input message="tns:getComptes"/>
+      <wsdl:output message="tns:getComptesResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="getCompteById">
+      <wsdl:input message="tns:getCompteById"/>
+      <wsdl:output message="tns:getCompteByIdResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="createCompte">
+      <wsdl:input message="tns:createCompte"/>
+      <wsdl:output message="tns:createCompteResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="deleteCompte">
+      <wsdl:input message="tns:deleteCompte"/>
+      <wsdl:output message="tns:deleteCompteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <!-- Binding -->
+  <wsdl:binding name="BanqueWSSoapBinding" type="tns:CompteSoapService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="getComptes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="getCompteById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="createCompte">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="deleteCompte">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <!-- Service -->
+  <wsdl:service name="BanqueWS">
+    <wsdl:port name="CompteSoapServicePort" binding="tns:BanqueWSSoapBinding">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
